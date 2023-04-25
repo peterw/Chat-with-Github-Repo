@@ -23,19 +23,20 @@ import tempfile
 from langchain.agents import create_csv_agent
 
 # Set the title for the Streamlit app
-st.title("🤖 pwang_szn Github bot")
-
+st.title(os.environ.get('SITE_TITLE'))
 # Load environment variables from a .env file (containing OPENAI_API_KEY)
 load_dotenv()
 # Set the OpenAI API key from the environment variable
 openai.api_key = os.environ.get('OPENAI_API_KEY')
-active_loop_data_set_path = "hub://pwangszn/gumroad" #change this to your dataset path
+active_loop_data_set_path = os.environ.get('DEEPLAKE_DATASET_PATH')
 
 # Create an instance of OpenAIEmbeddings
 embeddings = OpenAIEmbeddings()
 
 # Create an instance of DeepLake with the specified dataset path and embeddings
-db = DeepLake(dataset_path=active_loop_data_set_path, read_only=True, embedding_function=embeddings)
+db = DeepLake(dataset_path=active_loop_data_set_path,
+              read_only=True, embedding_function=embeddings)
+
 
 def generate_response(prompt):
     # Generate a response using OpenAI's ChatCompletion API and the specified prompt
@@ -47,10 +48,12 @@ def generate_response(prompt):
     response = completion.choices[0].message.content
     return response
 
+
 def get_text():
     # Create a Streamlit input field and return the user's input
     input_text = st.text_input("", key="input")
     return input_text
+
 
 def search_db(query):
     # Create a retriever from the DeepLake instance
@@ -66,6 +69,7 @@ def search_db(query):
     qa = RetrievalQA.from_llm(model, retriever=retriever)
     # Return the result of the query
     return qa.run(query)
+
 
 # Initialize the session state for generated responses and past inputs
 if 'generated' not in st.session_state:
@@ -86,5 +90,6 @@ if user_input:
 # If there are generated responses, display the conversation using Streamlit messages
 if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])):
-        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        message(st.session_state['past'][i],
+                is_user=True, key=str(i) + '_user')
         message(st.session_state["generated"][i], key=str(i))
