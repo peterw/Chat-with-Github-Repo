@@ -16,4 +16,6 @@ Run the github.py script to embed the github repo first
 
 This is how you run the streamlit app: 
 
-```streamlit run chat.py```
+```
+streamlit run chat.py
+```
