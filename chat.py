@@ -52,7 +52,7 @@ def get_text():
     input_text = st.text_input("", key="input")
     return input_text
 
-def search_chroma(query):
+def search_db(query):
     # Create a retriever from the DeepLake instance
     retriever = db.as_retriever()
     # Set the search parameters for the retriever
@@ -79,7 +79,7 @@ user_input = get_text()
 
 # If there is user input, search for a response using the search_chroma function
 if user_input:
-    output = search_chroma(user_input)
+    output = search_db(user_input)
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
 
