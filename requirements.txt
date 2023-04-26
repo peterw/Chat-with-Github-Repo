@@ -4,3 +4,4 @@ langchain
 openai
 python-dotenv
 deeplake
+tiktoken
