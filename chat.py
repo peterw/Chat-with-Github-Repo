@@ -81,7 +81,7 @@ if 'past' not in st.session_state:
 # Get the user's input from the text input field
 user_input = get_text()
 
-# If there is user input, search for a response using the search_chroma function
+# If there is user input, search for a response using the search_db function
 if user_input:
     output = search_db(user_input)
     st.session_state.past.append(user_input)
