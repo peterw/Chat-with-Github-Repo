@@ -33,21 +33,20 @@ def split_docs(docs):
     return text_splitter.split_documents(docs)
 
 
-def main(repo_url, root_dir, repo_name, username):
+def main(repo_url, root_dir, deep_lake_path):
     clone_repository(repo_url, root_dir)
     docs = load_docs(root_dir)
     texts = split_docs(docs)
     embeddings = OpenAIEmbeddings()
-
-    db = DeepLake(
-        dataset_path=f"hub://{username}/{repo_name}", embedding_function=embeddings)
+    
+    db = DeepLake(dataset_path=deep_lake_path, embedding_function=embeddings)
+    
     db.add_documents(texts)
 
 
 if __name__ == "__main__":
     repo_url = os.environ.get('REPO_URL')
     root_dir = "./gumroad"
-    deeplake_repo_name = os.environ.get('DEEPLAKE_REPO_NAME')
-    deeplake_username = os.environ.get('DEEPLAKE_USERNAME')
+    deep_lake_path = os.environ.get('DEEPLAKE_DATASET_PATH')
 
-    main(repo_url, root_dir, deeplake_repo_name, deeplake_username)
+    main(repo_url, root_dir, deep_lake_path)
