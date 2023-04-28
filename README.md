@@ -26,3 +26,8 @@ To set up and run this project, follow these steps:
    ```
    streamlit run chat.py
    ```
+   
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=peterw/Chat-with-Github-Repo&type=Date)](https://star-history.com/#peterw/Chat-with-Github-Repo)
+
