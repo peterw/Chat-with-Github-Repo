@@ -34,3 +34,13 @@ To set up and run this project, follow these steps:
    ```
    streamlit run chat.py
    ```
+   
+## Sponsers
+
+✨ Learn to build projects like this one (early bird discount): [BuildFast Course ](https://www.buildfastcourse.com/)
+
+## License
+
+[MIT License](LICENSE)
+
+
