@@ -22,10 +22,10 @@ from tempfile import NamedTemporaryFile
 import tempfile
 from langchain.agents import create_csv_agent
 
-# Set the title for the Streamlit app
-st.title(os.environ.get('SITE_TITLE'))
 # Load environment variables from a .env file (containing OPENAI_API_KEY)
 load_dotenv()
+# Set the title for the Streamlit app
+st.title(os.environ.get('SITE_TITLE'))
 # Set the OpenAI API key from the environment variable
 openai.api_key = os.environ.get('OPENAI_API_KEY')
 active_loop_data_set_path = os.environ.get('DEEPLAKE_DATASET_PATH')
