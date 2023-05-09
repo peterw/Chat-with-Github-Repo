@@ -1,7 +1,8 @@
-streamlit
-streamlit_chat
+deeplake
 langchain
 openai
+pathspec
 python-dotenv
-deeplake
+streamlit
+streamlit_chat
 tiktoken

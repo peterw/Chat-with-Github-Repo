@@ -1,0 +1,30 @@
+{
+	"[python]": {
+		"editor.defaultFormatter": null,
+		"editor.formatOnSave": true,
+		"editor.insertSpaces": true,
+		"editor.tabSize": 4
+	},
+	"cSpell.words": [
+		"activeloop",
+		"deeplake",
+		"dotenv",
+		"ipynb",
+		"langchain",
+		"openai",
+		"pathspec",
+		"stcli",
+		"streamlit",
+		"vectorstores"
+	],
+	"python.defaultInterpreterPath": "./venv/bin/python",
+	"python.formatting.blackArgs": ["--preview", "--line-length=88"],
+	"python.formatting.blackPath": "./venv/bin/black",
+	"python.formatting.provider": "black",
+	"python.linting.enabled": true,
+	"python.linting.flake8Args": ["--max-line-length=88"],
+	"python.linting.flake8Enabled": true,
+	"python.linting.flake8Path": "./venv/bin/flake8",
+	"python.linting.lintOnSave": true,
+	"python.linting.pylintEnabled": false
+}
