@@ -12,6 +12,7 @@
 		"ipynb",
 		"langchain",
 		"openai",
+		"pathspec",
 		"stcli",
 		"streamlit",
 		"vectorstores"
