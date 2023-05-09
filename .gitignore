@@ -1,3 +1,4 @@
-gumroad
+__pycache__/
 .env
-.vscode
+repos
+venv

@@ -1,46 +1,86 @@
 # Chat-with-Github-Repo
 
-This repository contains two Python scripts that demonstrate how to create a chatbot using Streamlit, OpenAI GPT-3.5-turbo, and Activeloop's Deep Lake.
+This repository contains Python scripts that demonstrate how to create a chatbot using Streamlit, OpenAI GPT-3.5-turbo, and Activeloop's Deep Lake.
 
-The chatbot searches a dataset stored in Deep Lake to find relevant information and generates responses based on the user's input.
+The chatbot searches a dataset stored in Deep Lake to find relevant information from any Git repository and generates responses based on the user's input.
 
 ## Files
 
-`github.py`: This script clones a git repository, processes the text documents, computes embeddings using OpenAIEmbeddings, and stores the embeddings in a DeepLake instance.
+- `src/utils/process.py`: This script clones a Git repository, processes the text documents, computes embeddings using OpenAIEmbeddings, and stores the embeddings in a DeepLake instance.
 
-`chat.py`: This script creates a Streamlit web application that interacts with the user and the DeepLake instance to generate chatbot responses using OpenAI GPT-3.5-turbo.
+- `src/utils/chat.py`: This script creates a Streamlit web application that interacts with the user and the DeepLake instance to generate chatbot responses using OpenAI GPT-3.5-turbo.
+
+- `src/main.py`: This script contains the command line interface (CLI) that allows you to run the chatbot application.
 
 ## Setup
 
-Before getting started, be sure to sign up for an [Activeloop](https://www.activeloop.ai/) and [OpenAI](https://openai.com/) account and create API keys. You'll also want to create a Deep Lake dataset, which will generate a dataset path in the format `hub://{username}/{repo_name}` (where you define the `repo_name`).
+Before getting started, be sure to sign up for an [Activeloop](https://www.activeloop.ai/) and [OpenAI](https://openai.com/) account and create API keys.
 
 To set up and run this project, follow these steps:
 
-1. Install the required packages with `pip`:
-   ```
-   pip install -r requirements.txt
-   ```
-2. Copy the `.env.example` file to `.env` and replace the variables, including API keys, GitHub URL, and site / Deep Lake information. Here's a brief explanation of the variables in the .env file:
+1. Clone the repository and navigate to the project directory:
 
-`OPENAI_API_KEY`: Your OpenAI API key. You can obtain this from your OpenAI account dashboard.
-`ACTIVELOOP_TOKEN`: Your Activeloop API token. You can obtain this from your Activeloop account dashboard.
-`DEEPLAKE_USERNAME`: Your Activeloop username.
-`DEEPLAKE_DATASET_PATH`: The dataset path for your Deep Lake dataset. This is in the format `hub://{username}/{repo_name}`. Replace `{username}` with your Activeloop username, and `{repo_name}` with the desired name for your Deep Lake dataset (e.g., `hub://johndoe/my-chatbot-dataset)`.
-`REPO_URL`: The URL of the GitHub repository you want to clone and process (e.g., `https://github.com/username/repo_name`).
-`SITE_TITLE`: The title for your Streamlit web application (e.g., "My Chatbot App").
+```bash
+git clone https://github.com/peterw/Chat-with-Git-Repo.git
+cd Chat-with-Git-Repo
+```
 
-3. Run the `github.py` script to embed the GitHub repo, thus, storing the data in the specified Activeloop Deep Lake.
-4. Run the Streamlit chat app, which should default to `http://localhost:8502` and allow you to ask questions about the repo:
-   ```
-   streamlit run chat.py
-   ```
-   
-## Sponsers
+2. Install the required packages with `pip`:
 
-✨ Learn to build projects like this one (early bird discount): [BuildFast Course ](https://www.buildfastcourse.com/)
+```bash
+pip install -r requirements.txt
+```
+
+For development dependencies, you can install them using the following command:
+
+```bash
+pip install -r dev-requirements.txt
+```
+
+3. Set the environment variables:
+
+Copy the `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
+Provide your API keys and username:
+
+```
+OPENAI_API_KEY=your_openai_api_key
+ACTIVELOOP_TOKEN=your_activeloop_api_token
+ACTIVELOOP_USERNAME=your_activeloop_username
+```
+
+4. Use the CLI to run the chatbot application. You can either process a Git repository or start the chat application using an existing dataset.
+
+> For complete CLI instructions run `python src/main.py --help`
+
+To process a Git repository, use the `process` subcommand:
+
+```bash
+python src/main.py process --repo-url https://github.com/username/repo_name
+```
+
+You can also specify additional options, such as file extensions to include while processing the repository, the name for the Activeloop dataset, or the destination to clone the repository:
+
+```bash
+python src/main.py process --repo-url https://github.com/username/repo_name --include-file-extensions .md .txt --activeloop-dataset-name my-dataset --repo-destination repos
+```
+
+To start the chat application using an existing dataset, use the `chat` subcommand:
+
+```bash
+python src/main.py chat --activeloop-dataset-name my-dataset
+```
+
+The Streamlit chat app will run, and you can interact with the chatbot at `http://localhost:8501` (or the next available port) to ask questions about the repository.
+
+## Sponsors
+
+✨ Learn to build projects like this one (early bird discount): [BuildFast Course](https://www.buildfastcourse.com/)
 
 ## License
 
 [MIT License](LICENSE)
-
-
