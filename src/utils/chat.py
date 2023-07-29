@@ -29,7 +29,7 @@ def run_chat_app(activeloop_dataset_path):
 
     # Initialize the session state for generated responses and past inputs
     if "generated" not in st.session_state:
-        st.session_state["generated"] = ["i am ready to help you ser"]
+        st.session_state["generated"] = ["i am ready to help you sir"]
 
     if "past" not in st.session_state:
         st.session_state["past"] = ["hello"]
