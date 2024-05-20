@@ -79,7 +79,7 @@ The Streamlit chat app will run, and you can interact with the chatbot at `http:
 
 ## Sponsors
 
-✨ Learn to build projects like this one (early bird discount): [BuildFast Course](https://www.buildfast.academy)
+✨ Find profitable ideas faster: [Exploding Insights](https://explodinginsights.com/)
 
 ## License
 
