@@ -21,8 +21,8 @@ To set up and run this project, follow these steps:
 1. Clone the repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/peterw/Chat-with-Git-Repo.git
-cd Chat-with-Git-Repo
+git clone https://github.com/peterw/Chat-with-Github-Repo.git
+cd Chat-with-Github-Repo
 ```
 
 2. Install the required packages with `pip`:

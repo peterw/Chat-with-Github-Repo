@@ -29,7 +29,7 @@ def run_chat_app(activeloop_dataset_path):
 
     # Initialize the session state for generated responses and past inputs
     if "generated" not in st.session_state:
-        st.session_state["generated"] = ["i am ready to help you ser"]
+        st.session_state["generated"] = ["i am ready to help you sir"]
 
     if "past" not in st.session_state:
         st.session_state["past"] = ["hello"]
@@ -67,6 +67,16 @@ def get_text():
     input_text = st.text_input("", key="input")
     return input_text
 
+def get_prompt():
+    prompt_template = """Use the following pieces of context to answer the question at the end.
+    If you don't know the answer, just say that you don't know, don't try to make up an answer.
+    If the question isn't about the context, just say that your purpose is to provide information about the Repo.
+
+    {context}
+
+    Question: {question}
+    """
+    return PromptTemplate(template=prompt_template, input_variables=["context", "question"])
 
 def search_db(db, query):
     """Search for a response to the query in the DeepLake database."""
@@ -80,7 +90,8 @@ def search_db(db, query):
     # Create a ChatOpenAI model instance
     model = ChatOpenAI(model="gpt-3.5-turbo")
     # Create a RetrievalQA instance from the model and retriever
-    qa = RetrievalQA.from_llm(model, retriever=retriever)
+    chain_type_kwargs = {"prompt": get_prompt()}
+    qa = RetrievalQA.from_chain_type(model, retriever=retriever, chain_type_kwargs=chain_type_kwargs)
     # Return the result of the query
     return qa.run(query)
 
